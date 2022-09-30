@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
 
 const CarregaListaLivros = () => {
-	const [livros, setLivros] = useState<Array<string>>([""]);
+	const [listaInterna, setListaInterna] = useState([])
 
-	useEffect(() => {
-		window.addEventListener("livro_registrado", (payload) => {
-			const {nomeDoLivro} = (payload as any).detail 
-			setLivros([...livros, nomeDoLivro]);
-		});
-	}, []);
+	window.addEventListener("livro_registrado", (payload) => {
+		const {nomeDoLivro} = (payload as any).detail 
+		setListaInterna([...listaInterna, nomeDoLivro])
+	});
 
 	return (
 		<>
 			<h3>Livros</h3>
 			<ul>
-				{livros.map((livro) => {
+				{listaInterna.map((livro) => {
 					return <li key={Math.random()}>{livro}</li>;
 				})}
 			</ul>
