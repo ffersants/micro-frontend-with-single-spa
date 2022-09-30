@@ -1,0 +1,44 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+
+a:hover {
+	cursor: pointer;
+}
+
+.black-bg {
+	background-color: #222;
+}
+
+.ice-bg {
+	background-color: #efeff1;
+}
+
+.gold-bg {
+	background-color: #bea55a !important;
+}
+
+.ice-color {
+	color: #808797;
+}
+
+.gold-color {
+	color: #b08400;
+}
+
+.uma-linha-com-ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.rs-nav-item-active {
+	background-color: #bea55a !important;
+}
+
+.rs-nav-item-active > * {
+	color: white !important;
+}

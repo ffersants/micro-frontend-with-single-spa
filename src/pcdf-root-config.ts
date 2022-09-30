@@ -1,12 +1,9 @@
 import { registerApplication, start } from "single-spa";
 
 registerApplication<{}>({
-  name: "@single-spa/welcome",
-  app: () =>
-    System.import(
-      "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js"
-    ),
-  activeWhen: (location) => location.pathname === "/",
+  name: "@pcdf/componentes",
+  app: () => System.import("@pcdf/componentes"),
+  activeWhen: (location) => true,
 });
 
 registerApplication<{}>({
@@ -15,11 +12,11 @@ registerApplication<{}>({
   activeWhen: (location) => location.pathname === "/protocolo",
 });
 
-registerApplication<{}>({
-  name: "@pcdf/ocorrencia",
-  app: () => System.import("@pcdf/ocorrencia"),
-  activeWhen: (location) => location.pathname.startsWith("/ocorrencia"),
-});
+// registerApplication<{}>({
+//   name: "@pcdf/ocorrencia",
+//   app: () => System.import("@pcdf/ocorrencia"),
+//   activeWhen: (location) => location.pathname.startsWith("/ocorrencia"),
+// });
 
 start({
   urlRerouteOnly: true,
