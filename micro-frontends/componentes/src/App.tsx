@@ -1,11 +1,11 @@
 import Parsel from "single-spa-react/parcel";
 import Layout from "./presentation/components/layout/layout";
 import 'rsuite/lib/styles/index.less'; // or 'rsuite/dist/styles/rsuite-default.css'
-
+import "./presentation/assets/global.css"
 const App = () => {
 	const params = window.location.pathname;
 
-	console.log('rodeeeei');
+	console.log(params)
 
 	return (
 		<Layout>
