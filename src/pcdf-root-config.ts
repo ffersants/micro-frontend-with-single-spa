@@ -12,11 +12,11 @@ registerApplication<{}>({
   activeWhen: (location) => location.pathname === "/protocolo",
 });
 
-// registerApplication<{}>({
-//   name: "@pcdf/ocorrencia",
-//   app: () => System.import("@pcdf/ocorrencia"),
-//   activeWhen: (location) => location.pathname.startsWith("/ocorrencia"),
-// });
+registerApplication<{}>({
+  name: "@pcdf/ocorrencia",
+  app: () => System.import("@pcdf/ocorrencia"),
+  activeWhen: (location) => location.pathname.startsWith("/ocorrencia"),
+});
 
 start({
   urlRerouteOnly: true,

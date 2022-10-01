@@ -21,8 +21,7 @@ const Layout = ({children}: {children: any}) => {
 	
 	return (
 		<>
-			<Container>
-			<Header className='black-bg'>
+			<div className='black-bg'>
 				<FlexboxGrid
 					justify='space-between'
 					align='middle'
@@ -98,7 +97,7 @@ const Layout = ({children}: {children: any}) => {
 						</Dropdown>
 					</FlexboxGridItem>
 				</FlexboxGrid>
-			</Header>
+			</div>
 
 			<Container>
 				<Sidebar
@@ -170,7 +169,6 @@ const Layout = ({children}: {children: any}) => {
 					3207-4661
 				</span>
 			</Footer>
-		</Container>
 		</>
 	)
 }
