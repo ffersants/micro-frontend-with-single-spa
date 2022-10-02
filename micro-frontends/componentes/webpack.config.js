@@ -25,17 +25,18 @@ module.exports = (webpackConfigEnv, argv) => {
 						// compiles Less to CSS
 						{
 							loader: "style-loader",
-						
 						},
 						{
 							loader: "css-loader",
-							
 						},
 						{
 							loader: "less-loader",
 							options: {
 								lessOptions: {
 									javascriptEnabled: true,
+								},
+								modifyVars: {
+									"@primary-color": "#bea55a",
 								},
 							},
 						},

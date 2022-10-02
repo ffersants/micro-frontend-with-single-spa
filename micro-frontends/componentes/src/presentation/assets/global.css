@@ -34,11 +34,11 @@ a:hover {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-
+/* 
 .rs-nav-item-active {
 	background-color: #bea55a !important;
 }
 
 .rs-nav-item-active > * {
 	color: white !important;
-}
+} */

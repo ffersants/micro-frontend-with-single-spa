@@ -1,3 +1,4 @@
+import MenuIcon from "@rsuite/icons/Menu";
 import { useState } from "react";
 import {
 	Avatar,
@@ -6,22 +7,19 @@ import {
 	Dropdown,
 	FlexboxGrid,
 	Footer,
-	Header,
-	Icon,
 	IconButton,
-	Nav,
-	Sidebar,
-	Sidenav,
 } from "rsuite";
 import brasaoPcdf from "../../assets/logo.png";
-import FlexboxGridItem from "rsuite/lib/FlexboxGrid/FlexboxGridItem";
+import style from "./style.module.css";
 
-const Layout = ({children}: {children: any}) => {
-	const [showSidenav, setShowSidenav] = useState(false);
-	
+const Layout = ({ children }: { children: any }) => {
+	const [isUserDropdownOpened, setIsUserDropdownOpened] = useState(false);
 	return (
 		<>
-			<div className='black-bg'>
+			<div
+				className='black-bg'
+				style={{ position: "fixed", width: "100%", zIndex: "1000" }}
+			>
 				<FlexboxGrid
 					justify='space-between'
 					align='middle'
@@ -29,7 +27,7 @@ const Layout = ({children}: {children: any}) => {
 						gap: "20px",
 					}}
 				>
-					<FlexboxGridItem>
+					<FlexboxGrid.Item>
 						<div
 							style={{
 								lineHeight: "15px",
@@ -42,8 +40,12 @@ const Layout = ({children}: {children: any}) => {
 							}}
 						>
 							<IconButton
-								onClick={() => setShowSidenav(!showSidenav)}
-								icon={<Icon icon='bars' style={{ color: "white" }} />}
+								onClick={() => {
+									dispatchEvent(
+										new CustomEvent("@pcdf/componentes/abrir-fechar-sidenav")
+									);
+								}}
+								icon={<MenuIcon />}
 								appearance='link'
 								circle
 								size='lg'
@@ -59,99 +61,47 @@ const Layout = ({children}: {children: any}) => {
 									cursor: "pointer",
 									fontFamily: '"Franklin Gothic", sans-serif',
 								}}
+								id='nome-do-sistema'
 								// onClick={() => history.push("/")}
-							>
-								DITEC AJUDA
-							</p>
+							></p>
 						</div>
-					</FlexboxGridItem>
+					</FlexboxGrid.Item>
 
-					<FlexboxGridItem>
+					<FlexboxGrid.Item style={{display: "flex", gap: "15px", paddingRight: "15px"}}>
 						<Dropdown
-							placement='bottomEnd'
-							title={
-								<div style={{ display: "flex", gap: "15px" }}>
-									<Avatar size='md' circle>
-										{/* <UserIcon /> */}
-									</Avatar>
-									<div style={{ textAlign: "left" }}>
-										{/* <p
-											title={`${user?.userName} - ${user?.userMatricula}`}
-											className='uma-linha-com-ellipsis'
-										>
-											{user?.userName} - {user?.userMatricula}
-										</p> */}
-										<p>Fernando Santos Ferreira</p>
-									</div>
-								</div>
-							}
+							trigger={"click"}
+							open={isUserDropdownOpened}
+							renderToggle={() => (
+								<Avatar
+									className={style.avatar}
+									circle
+									style={{ background: "#bea55a" }}
+									onClick={() => {setIsUserDropdownOpened(!isUserDropdownOpened)}}
+								>
+									F
+								</Avatar>
+							)}
+							placement="bottomEnd"
 						>
-							<Dropdown.Item>Alterar senha</Dropdown.Item>
-							<Dropdown.Item
+								<Dropdown.Item><a href="/ditec-ajuda">DITEC Ajuda</a></Dropdown.Item>
+								<Dropdown.Item><a href="/ocorrencia">Ocorrencia</a></Dropdown.Item>
+								<Dropdown.Item>Alterar senha</Dropdown.Item>
+								<Dropdown.Item
 								// onClick={() => {
 								// 	auth.signoutRedirect();
 								// }}
-							>
-								Sair
-							</Dropdown.Item>
+								>
+									Sair
+								</Dropdown.Item>
 						</Dropdown>
-					</FlexboxGridItem>
+					</FlexboxGrid.Item>
 				</FlexboxGrid>
 			</div>
 
 			<Container>
-				<Sidebar
-					width={showSidenav ? 260 : 0}
-					style={{
-						transition: "all .2s  ease-in-out",
-						backgroundColor: "white",
-						boxShadow: "0px 0px 20px rgb(1 41 112 / 10%)",
-					}}
-				>
-					<Sidenav>
-						<Nav
-							style={{
-								backgroundColor: "white",
-								fontFamily: 'Roboto, sans-serif'
-							}}
-						>
-							<Nav.Item
-								style={{ display: "block" }}
-								hasTooltip={false}
-								// onSelect={() => history.push("/home")}
-								icon={<Icon icon='home' size='lg' />}
-								// active={history.location.pathname === "/home"}
-							>
-								Home
-							</Nav.Item>
-							<Nav.Item
-								style={{ display: "block" }}
-								hasTooltip={false}
-								// onSelect={() => history.push("/feed")}
-								icon={<Icon icon='newspaper-o' size='lg' />}
-								// active={history.location.pathname === "/feed" || history.location.pathname === "/" || history.location.pathname === ""}
-							>
-								Feed
-							</Nav.Item>
-							<Nav.Item
-								style={{ display: "block" }}
-								hasTooltip={false}
-								// onSelect={() => history.push("/pesquisar-artigo")}
-								icon={<Icon icon='search' size='lg' />}
-								// active={history.location.pathname === "/pesquisar-artigo"}
-							>
-								Pesquisar artigo
-							</Nav.Item>
-						</Nav>
-					</Sidenav>
-				</Sidebar>
-				<Content
-					style={{
-						padding: "2em 4em",
-					}}
-				>
+				<Content>
 					<Container>
-						<Content style={{ minHeight: "100vh" }}>{children || ""}</Content>
+						<Content style={{ minHeight: "100vh", marginTop: "55px" }}>{children || ""}</Content>
 					</Container>
 				</Content>
 			</Container>
@@ -170,7 +120,7 @@ const Layout = ({children}: {children: any}) => {
 				</span>
 			</Footer>
 		</>
-	)
-}
+	);
+};
 
-export default Layout
+export default Layout;
